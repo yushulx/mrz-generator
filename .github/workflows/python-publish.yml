@@ -33,7 +33,7 @@ jobs:
     - name: Build package
       run: flet publish main.py
     - name: Change base-tag in index.html from / to mrz-generator
-      run: sed -i 's/<base href="\/" \/>/<base href="\/mrz-generator\/" \/>/g' dist/index.html
+      run: sed -i 's/<base href="\/">/<base href="\/mrz-generator\/">/g' dist/index.html
     - name: Commit dist to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
