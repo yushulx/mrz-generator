@@ -31,7 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flet mrz
     - name: Build package
-      run: python publish main.py
+      run: flet publish main.py
     - name: Change base-tag in index.html from / to mrz-generator
       run: sed -i 's/<base href="\/" \/>/<base href="\/mrz-generator\/" \/>/g' dist/index.html
     - name: Commit dist to GitHub Pages
