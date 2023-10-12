@@ -27,31 +27,31 @@ def main(page: ft.Page):
         value='P', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     country_code_txt = ft.TextField(
-        value='UTO', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     document_number_txt = ft.TextField(
-        value='L898902C3', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     birth_date_txt = ft.TextField(
-        value='740812', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     sex_txt = ft.TextField(
-        value='F', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     expiry_date_txt = ft.TextField(
-        value='120415', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     nationality_txt = ft.TextField(
-        value='UTO', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     surname_txt = ft.TextField(
-        value='Eriksson', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     given_names_txt = ft.TextField(
-        value='Anna María', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     optional_data1_txt = ft.TextField(
-        value='ZE184226B', text_align=ft.TextAlign.LEFT, width=200, height=50)
+        value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
 
     optional_data2_txt = ft.TextField(
         value='', text_align=ft.TextAlign.LEFT, width=200, height=50)
@@ -70,71 +70,34 @@ def main(page: ft.Page):
                                    optional_data2, optional_data2_txt])
     ])
 
+    def generate_random_data():
+        data = utils.random_mrz_data()
+        surname_txt.value = data['Surname']
+        given_names_txt.value = data['Given Name']
+        nationality_txt.value = data['Nationality']
+        country_code_txt.value = nationality_txt.value
+        sex_txt.value = data['Sex']
+        document_number_txt.value = data['Document Number']
+        birth_date_txt.value = data['Birth Date']
+        expiry_date_txt.value = data['Expiry Date']
+
+    generate_random_data()
+
     def dropdown_changed(e):
         if dropdown.value == 'ID Card(TD1)':
             document_type_txt.value = 'I'
-            country_code_txt.value = 'ESP'
-            document_number_txt.value = 'BAA000589'
-            birth_date_txt.value = '800101'
-            sex_txt.value = 'F'
-            expiry_date_txt.value = '250101'
-            nationality_txt.value = 'ESP'
-            surname_txt.value = 'ESPAÑOLA ESPAÑOLA'
-            given_names_txt.value = 'CARMEN'
-            optional_data1_txt.value = '99999999R'
-            optional_data2_txt.value = ''
         elif dropdown.value == 'ID Card(TD2)':
             document_type_txt.value = 'I'
-            country_code_txt.value = 'Utopia'
-            surname_txt.value = 'ERIKSSON'
-            given_names_txt.value = 'ANNA MARIA'
-            document_number_txt.value = 'D23145890'
-            nationality_txt.value = 'UTO'
-            birth_date_txt.value = '740812'
-            sex_txt.value = 'F'
-            expiry_date_txt.value = '120415'
-            optional_data1_txt.value = ''
-            optional_data2_txt.value = ''
         elif dropdown.value == 'Passport(TD3)':
             document_type_txt.value = 'P'
-            country_code_txt.value = 'UTO'
-            document_number_txt.value = 'L898902C3'
-            birth_date_txt.value = '740812'
-            sex_txt.value = 'F'
-            expiry_date_txt.value = '120415'
-            nationality_txt.value = 'UTO'
-            surname_txt.value = 'Eriksson'
-            given_names_txt.value = 'Anna María'
-            optional_data1_txt.value = 'ZE184226B'
-            optional_data2_txt.value = ''
 
         elif dropdown.value == 'Visa(A)':
             document_type_txt.value = 'V'
-            country_code_txt.value = 'USA'
-            surname_txt.value = 'TRAVELER'
-            given_names_txt.value = 'HAPPY'
-            document_number_txt.value = '123456789'
-            nationality_txt.value = 'CAN'
-            birth_date_txt.value = '661212'
-            sex_txt.value = 'M'
-            expiry_date_txt.value = '140728'
-            optional_data1_txt.value = 'B3XLC000FD142955'
-            optional_data2_txt.value = ''
 
         elif dropdown.value == 'Visa(B)':
             document_type_txt.value = 'V'
-            country_code_txt.value = 'GBR'
-            surname_txt.value = 'MUNIR'
-            given_names_txt.value = 'FAISAL'
-            document_number_txt.value = 'AD0725981'
-            nationality_txt.value = 'PAK'
-            birth_date_txt.value = '760815'
-            sex_txt.value = 'M'
-            expiry_date_txt.value = '061116'
-            optional_data1_txt.value = ''
-            optional_data2_txt.value = ''
 
-        page.update()
+        generate_random(e)
 
     def is_empty(filed_name, filed_text):
         if filed_text.value == None or filed_text.value == '':
@@ -148,15 +111,7 @@ def main(page: ft.Page):
         return False
 
     def generate_random(e):
-        data = utils.random_mrz_data()
-        surname_txt.value = data['Surname']
-        given_names_txt.value = data['Given Name']
-        nationality_txt.value = data['Nationality']
-        country_code_txt.value = nationality_txt.value
-        sex_txt.value = data['Sex']
-        document_number_txt.value = data['Document Number']
-        birth_date_txt.value = data['Birth Date']
-        expiry_date_txt.value = data['Expiry Date']
+        generate_random_data()
         generate_mrz(e)
         page.update()
 
