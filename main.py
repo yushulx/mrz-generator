@@ -1,5 +1,4 @@
 import flet as ft
-import sys
 
 from mrz.generator.td1 import TD1CodeGenerator
 from mrz.generator.td2 import TD2CodeGenerator
@@ -16,7 +15,7 @@ def main(page: ft.Page):
     country_code = ft.Text('Country')
     document_number = ft.Text('Document number')
     birth_date = ft.Text('Birth date')
-    sex = ft.Text('sex')
+    sex = ft.Text('Sex')
     expiry_date = ft.Text('Expiry date')
     nationality = ft.Text('Nationality')
     surname = ft.Text('Surname')
