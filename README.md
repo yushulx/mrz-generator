@@ -1,5 +1,5 @@
 # MRZ Generator
-The project demonstrates how to build a MRZ generator app with Python and Flet.
+The project demonstrates how to build an MRZ generator app with [Python MRZ package](https://pypi.org/project/mrz/) and [Flet](https://flet.dev/).
 
 ## Installation
 
@@ -13,7 +13,8 @@ pip install -r requirements.txt
 flet run
 ```
 
-<img width="941" alt="image" src="https://github.com/yushulx/mrz-generator/assets/2202306/37bb56ab-188c-4f53-859a-0d0ef737e93c">
+![image](https://github.com/yushulx/mrz-generator/assets/2202306/c185956d-0d6c-48d7-9262-55d6cb739dca)
+
 
 
 ## Build the App for Web
