@@ -153,6 +153,7 @@ def main(page: ft.Page):
         surname_txt.value = data['Surname']
         given_names_txt.value = data['Given Name']
         nationality_txt.value = data['Nationality']
+        country_code_txt.value = nationality_txt.value
         sex_txt.value = data['Sex']
         document_number_txt.value = data['Document Number']
         birth_date_txt.value = data['Birth Date']
