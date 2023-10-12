@@ -7,6 +7,8 @@ from mrz.generator.td3 import TD3CodeGenerator
 from mrz.generator.mrva import MRVACodeGenerator
 from mrz.generator.mrvb import MRVBCodeGenerator
 
+import utils
+
 
 def main(page: ft.Page):
 
@@ -138,8 +140,8 @@ def main(page: ft.Page):
     def is_empty(filed_name, filed_text):
         if filed_text.value == None or filed_text.value == '':
             page.snack_bar = ft.SnackBar(
-                content=ft.Text(filed_name.value + " is empty!"),
-                action="OK",
+                content=ft.Text(filed_name.value + ' is empty!'),
+                action='OK',
             )
             page.snack_bar.open = True
             page.update()
@@ -147,6 +149,15 @@ def main(page: ft.Page):
         return False
 
     def generate_random(e):
+        data = utils.random_mrz_data()
+        surname_txt.value = data['Surname']
+        given_names_txt.value = data['Given Name']
+        nationality_txt.value = data['Nationality']
+        sex_txt.value = data['Sex']
+        document_number_txt.value = data['Document Number']
+        birth_date_txt.value = data['Birth Date']
+        expiry_date_txt.value = data['Expiry Date']
+        generate_mrz(e)
         page.update()
 
     def generate_mrz(e):
@@ -176,7 +187,7 @@ def main(page: ft.Page):
             except Exception as e:
                 page.snack_bar = ft.SnackBar(
                     content=ft.Text(str(e)),
-                    action="OK",
+                    action='OK',
                 )
                 page.snack_bar.open = True
 
@@ -205,7 +216,7 @@ def main(page: ft.Page):
             except Exception as e:
                 page.snack_bar = ft.SnackBar(
                     content=ft.Text(str(e)),
-                    action="OK",
+                    action='OK',
                 )
                 page.snack_bar.open = True
 
@@ -234,7 +245,7 @@ def main(page: ft.Page):
             except Exception as e:
                 page.snack_bar = ft.SnackBar(
                     content=ft.Text(str(e)),
-                    action="OK",
+                    action='OK',
                 )
                 page.snack_bar.open = True
         elif dropdown.value == 'Visa(A)':
@@ -262,7 +273,7 @@ def main(page: ft.Page):
             except Exception as e:
                 page.snack_bar = ft.SnackBar(
                     content=ft.Text(str(e)),
-                    action="OK",
+                    action='OK',
                 )
                 page.snack_bar.open = True
 
@@ -290,7 +301,7 @@ def main(page: ft.Page):
             except Exception as e:
                 page.snack_bar = ft.SnackBar(
                     content=ft.Text(str(e)),
-                    action="OK",
+                    action='OK',
                 )
                 page.snack_bar.open = True
 
@@ -309,19 +320,19 @@ def main(page: ft.Page):
     dropdown.value = 'Passport(TD3)'
 
     button_generate = ft.ElevatedButton(
-        text="Generate", on_click=generate_mrz)
+        text='Generate', on_click=generate_mrz)
 
     button_random = ft.ElevatedButton(
-        text="Random", on_click=generate_random)
+        text='Random', on_click=generate_random)
 
     mrz_field = ft.TextField(
-        value='', text_align=ft.TextAlign.LEFT, width=510, height=100, multiline=True)
+        value='', text_align=ft.TextAlign.LEFT, width=510, height=100, multiline=True, text_size=14)
 
     page.add(
         ft.Column(controls=[
             dropdown,
             container_loaded,
-            ft.Row([button_generate]),
+            ft.Row([button_random, button_generate]),
             mrz_field], scroll=True)
     )
 
